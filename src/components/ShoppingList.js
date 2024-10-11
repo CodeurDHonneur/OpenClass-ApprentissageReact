@@ -1,12 +1,5 @@
 import { plantList } from "../datas/plantList";
-
-// const plantList = [
-//     'monstera',
-//     'ficus lyrata',
-//     'pothos argenté',
-//     'yucca',
-//     'palmier'
-// ];
+import '../styles/ShoppingList.css'
 
 const categorieUnique = [];
 
@@ -31,9 +24,13 @@ function ShoppingList() {
             </div>
             <div>
                 <h2>Liste de plantes</h2>
-                <ul>
+                <ul className='lmj-plant-list'>
                     {plantList.map((plant, index) => {
-                        return <li key={`${plant.name}-${index}`}>{plant.name}</li>
+                        return <li key={`${plant.name}-${index}`} className='lmj-plant-item'>
+                            {plant.name}
+                            {plant.isSpecialOffer && <div className="lmj-sales">Soldes</div>}
+                            {plant.isBestSale && <span>🔥</span>}
+                            </li>
                     })}
 
                 </ul>
