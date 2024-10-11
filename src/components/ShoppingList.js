@@ -1,5 +1,7 @@
 import { plantList } from "../datas/plantList";
 import '../styles/ShoppingList.css'
+import CareScale from "./CareScale";
+import PlantItem from "./PlantItem";
 
 const categorieUnique = [];
 
@@ -13,30 +15,25 @@ function ShoppingList() {
     filterCategorie(categorieUnique);
 
     return (
-        <>
             <div>
-                <h2>Liste des différentes catégories</h2>
                 <ul>
-                    {categorieUnique.map((categorie, index) => {
-                        return <li key={`${categorie}-${index}`}>{categorie}</li>
-                    })}
+                    {categorieUnique.map((cat) => (
+                        <li key={cat}>{cat}</li>
+                    ))}
                 </ul>
-            </div>
-            <div>
-                <h2>Liste de plantes</h2>
                 <ul className='lmj-plant-list'>
-                    {plantList.map((plant, index) => {
-                        return <li key={`${plant.name}-${index}`} className='lmj-plant-item'>
-                            {plant.name}
-                            {plant.isSpecialOffer && <div className="lmj-sales">Soldes</div>}
-                            {plant.isBestSale && <span>🔥</span>}
-                            </li>
-                    })}
-
+                    {plantList.map(({ id, cover, name, water, light }) => (
+                        <PlantItem
+                            id={id}
+                            cover={cover}
+                            name={name}
+                            water={water}
+                            light={light}
+                        />
+                    ))}
                 </ul>
             </div>
-
-        </>
+       
     )
 }
 
